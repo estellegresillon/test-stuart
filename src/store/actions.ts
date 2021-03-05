@@ -1,7 +1,14 @@
-import { ILocation } from "model/ILocation";
-import { ActionTypes, GEOCODE_REQUEST, FETCHED_DATA_RESPONSE } from "./types";
+import { ILocation, IAddresses } from "model/ILocation";
+import {
+  ActionTypes,
+  GEOCODE_REQUEST,
+  FETCHED_DATA_RESPONSE,
+  IS_STATE_LOADING,
+  CREATE_JOB_REQUEST,
+  CREATE_JOB_SUCCESS,
+} from "./types";
 
-export function geocodeRequest(address: string, type: string): ActionTypes {
+export const geocodeRequest = (address: string, type: string): ActionTypes => {
   return {
     type: GEOCODE_REQUEST,
     payload: {
@@ -9,12 +16,12 @@ export function geocodeRequest(address: string, type: string): ActionTypes {
       type,
     },
   };
-}
+};
 
-export function fetchedDataResponse(
+export const fetchedDataResponse = (
   data: ILocation | null,
   type: string
-): ActionTypes {
+): ActionTypes => {
   return {
     type: FETCHED_DATA_RESPONSE,
     payload: {
@@ -22,4 +29,31 @@ export function fetchedDataResponse(
       type,
     },
   };
-}
+};
+
+export const createJobRequest = (addresses: IAddresses): ActionTypes => {
+  return {
+    type: CREATE_JOB_REQUEST,
+    payload: {
+      addresses,
+    },
+  };
+};
+
+export const createJobSuccess = (isJobCreated: boolean): ActionTypes => {
+  return {
+    type: CREATE_JOB_SUCCESS,
+    payload: {
+      isJobCreated,
+    },
+  };
+};
+
+export const isStateLoading = (isLoading: boolean): ActionTypes => {
+  return {
+    type: IS_STATE_LOADING,
+    payload: {
+      isLoading,
+    },
+  };
+};

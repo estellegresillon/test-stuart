@@ -4,3 +4,8 @@ export interface ILocation {
   latitude?: number;
   status?: string;
 }
+
+export interface IAddresses {
+  pickup: string;
+  dropoff: string;
+}

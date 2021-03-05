@@ -1,6 +1,7 @@
 const colors = {
   grey: "#f0f3f7",
   darkerGrey: "#8596a6",
+  black: "rgba(51, 51, 51, 0.9)",
 };
 
 const shadows = {

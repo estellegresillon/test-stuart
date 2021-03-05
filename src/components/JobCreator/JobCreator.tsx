@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Input, Button, Icon } from "components/common";
 import StyledJobCreator from "./styles";
 import { ILocation } from "model/ILocation";
-import { selectPickup, selectDropoff } from "store/selectors";
+import { selectPickup, selectDropoff, selectLoading } from "store/selectors";
+import { createJobRequest } from "store/actions";
 
 const JobCreator: React.FC = () => {
   const pickup = useSelector(selectPickup);
   const dropoff = useSelector(selectDropoff);
+  const isLoading = useSelector(selectLoading);
+  const dispatch = useDispatch();
   const [pickupInput, setPickupInput] = useState("");
   const [dropoffInput, setDropoffInput] = useState("");
 
@@ -19,6 +22,10 @@ const JobCreator: React.FC = () => {
     if (item.latitude) {
       return `${icon}Present`;
     } else return `${icon}Error`;
+  };
+
+  const handleButtonClick = () => {
+    dispatch(createJobRequest({ pickup: pickupInput, dropoff: dropoffInput }));
   };
 
   return (
@@ -42,8 +49,9 @@ const JobCreator: React.FC = () => {
         />
       </div>
       <Button
-        disabled={!pickup?.latitude || !dropoff?.latitude}
+        disabled={!pickup?.latitude || !dropoff?.latitude || isLoading}
         label="Create job"
+        onClick={handleButtonClick}
       />
     </StyledJobCreator>
   );

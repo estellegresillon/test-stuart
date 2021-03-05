@@ -15,3 +15,17 @@ export const selectDropoff = createSelector(
     return state.dropoff;
   }
 );
+
+export const selectLoading = createSelector(
+  selectRootState,
+  (state: IState) => {
+    return state.isLoading;
+  }
+);
+
+export const selectJobCreated = createSelector(
+  selectRootState,
+  (state: IState) => {
+    return state.isJobCreated;
+  }
+);

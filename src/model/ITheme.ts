@@ -3,6 +3,7 @@ export interface ITheme {
     colors: {
       grey: string;
       darkGrey: string;
+      black: string;
     };
     shadows: {
       normal: string;
