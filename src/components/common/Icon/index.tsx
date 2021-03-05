@@ -4,8 +4,6 @@ import dropoffError from "./dropOffBadgeError.svg";
 import pickupError from "./pickUpBadgeError.svg";
 import dropoffPresent from "./dropOffBadgePresent.svg";
 import pickupPresent from "./pickUpBadgePresent.svg";
-import dropoffMarker from "./dropOffMarker.svg";
-import pickupMarker from "./pickUpMarker.svg";
 
 interface IIcon {
   icon: string;
@@ -32,12 +30,6 @@ const Icon: React.FC<IIcon> = ({ icon }) => {
       break;
     case "pickupPresent":
       IconComponent = pickupPresent;
-      break;
-    case "dropoffMarker":
-      IconComponent = dropoffMarker;
-      break;
-    case "pickupMarker":
-      IconComponent = pickupMarker;
       break;
     default:
       break;

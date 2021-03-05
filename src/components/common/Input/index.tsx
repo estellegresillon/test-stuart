@@ -1,25 +1,23 @@
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import StyledInput from "./styles";
-import api from "services";
-import { ILocation } from "model/ILocation";
+import { geocodeRequest, fetchedDataResponse } from "store/actions";
 
 interface IInput {
   placeholder: string;
   value: string;
+  type: string;
   onChange: (value: string) => void;
-  onGeocode: (value?: ILocation) => void;
 }
 
-const Input: React.FC<IInput> = ({
-  value,
-  placeholder,
-  onChange,
-  onGeocode,
-}) => {
+const Input: React.FC<IInput> = ({ value, placeholder, type, onChange }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      !value && onGeocode();
-      value.length > 3 && api.geocode(value, onGeocode);
+      !value && dispatch(fetchedDataResponse(null, type));
+      value.length > 3 && dispatch(geocodeRequest(value, type));
     }, 2000);
 
     return () => clearTimeout(delayDebounceFn);

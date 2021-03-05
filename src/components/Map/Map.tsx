@@ -1,11 +1,19 @@
 import { compose, withProps } from "recompose";
-import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+} from "react-google-maps";
+
+import pickupMarker from "../common/Icon/pickup-marker.svg";
+import dropoffMarker from "../common/Icon/dropoff-marker.svg";
 
 const defaultMapOptions = {
   disableDefaultUI: true,
 };
 
-const MapContainer: React.ComponentClass = compose(
+const MapContainer: React.ComponentClass<any> = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAP_KEY}&v=3.exp&libraries=geometry,drawing,places`,
     loadingElement: <div style={{ height: `100%` }} />,
@@ -14,12 +22,27 @@ const MapContainer: React.ComponentClass = compose(
   }),
   withScriptjs,
   withGoogleMap
-)(() => (
-  <GoogleMap
-    defaultZoom={8}
-    defaultCenter={{ lat: -34.397, lng: 150.644 }}
-    options={defaultMapOptions}
-  ></GoogleMap>
-));
+)(({ dropoff, pickup }: any) => {
+  return (
+    <GoogleMap
+      defaultZoom={12}
+      defaultCenter={{ lat: 48.86982, lng: 2.334579 }}
+      options={defaultMapOptions}
+    >
+      {pickup && (
+        <Marker
+          icon={pickupMarker}
+          position={{ lat: pickup.latitude, lng: pickup.longitude }}
+        />
+      )}
+      {dropoff && (
+        <Marker
+          icon={dropoffMarker}
+          position={{ lat: dropoff.latitude, lng: dropoff.longitude }}
+        />
+      )}
+    </GoogleMap>
+  );
+});
 
 export default MapContainer;

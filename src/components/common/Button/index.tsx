@@ -5,8 +5,8 @@ export interface IButton {
   disabled: boolean;
 }
 
-const Button: React.FC<IButton> = ({ label, ...props }) => (
-  <StyledButton {...props}>{label}</StyledButton>
+const Button: React.FC<IButton> = ({ label, disabled }) => (
+  <StyledButton disabled={disabled}>{label}</StyledButton>
 );
 
 export default Button;

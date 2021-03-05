@@ -33,9 +33,9 @@ module.exports = () => {
     resolve: {
       extensions: [".ts", ".tsx", ".js"],
       alias: {
-        model: path.resolve(__dirname, "src/model/"),
         components: path.resolve(__dirname, "src/components/"),
-        services: path.resolve(__dirname, "src/services/"),
+        model: path.resolve(__dirname, "src/model/"),
+        store: path.resolve(__dirname, "src/store/"),
       },
     },
     module: {

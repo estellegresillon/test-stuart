@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import { ITheme } from "model/ITheme";
-import { IButton } from ".";
+
+export interface IButtonProps {
+  disabled: boolean;
+}
 
 const bg = ({ theme }: ITheme) => theme.gradients.primary;
-const opacity = (props: IButton) => (props.disabled ? "0.5" : "1");
-const cursor = (props: IButton) => (props.disabled ? "initial" : "pointer");
+const opacity = (props: IButtonProps) => (props.disabled ? "0.5" : "1");
+const cursor = (props: IButtonProps) =>
+  props.disabled ? "initial" : "pointer";
 
-const StyledButton = styled.div`
+const StyledButton = styled.div<IButtonProps>`
   color: white;
   font-weight: 900;
   border-radius: 8px;

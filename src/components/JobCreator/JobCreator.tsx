@@ -1,16 +1,18 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import { Input, Button, Icon } from "components/common";
 import StyledJobCreator from "./styles";
 import { ILocation } from "model/ILocation";
+import { selectPickup, selectDropoff } from "store/selectors";
 
 const JobCreator: React.FC = () => {
-  const [pickup, setPickup] = useState<ILocation>();
-  const [dropoff, setDropoff] = useState<ILocation>();
+  const pickup = useSelector(selectPickup);
+  const dropoff = useSelector(selectDropoff);
   const [pickupInput, setPickupInput] = useState("");
   const [dropoffInput, setDropoffInput] = useState("");
 
-  const handlePickupIcon = (icon: string, item?: ILocation) => {
+  const handlePickupIcon = (icon: string, item: ILocation | null) => {
     if (!item) {
       return `${icon}Blank`;
     }
@@ -26,8 +28,8 @@ const JobCreator: React.FC = () => {
         <Input
           value={pickupInput}
           onChange={setPickupInput}
-          onGeocode={setPickup}
           placeholder="Pick up address"
+          type="pickup"
         />
       </div>
       <div className="Job-Creator-Input">
@@ -35,8 +37,8 @@ const JobCreator: React.FC = () => {
         <Input
           value={dropoffInput}
           onChange={setDropoffInput}
-          onGeocode={setDropoff}
           placeholder="Drop off address"
+          type="dropoff"
         />
       </div>
       <Button
