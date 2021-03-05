@@ -1,11 +1,12 @@
 import StyledButton from "./styles";
 
-interface IButton {
+export interface IButton {
   label: string;
+  disabled: boolean;
 }
 
-const Button: React.FC<IButton> = ({ label }) => (
-  <StyledButton>{label}</StyledButton>
+const Button: React.FC<IButton> = ({ label, ...props }) => (
+  <StyledButton {...props}>{label}</StyledButton>
 );
 
 export default Button;

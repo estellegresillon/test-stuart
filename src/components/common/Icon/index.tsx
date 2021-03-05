@@ -1,7 +1,13 @@
-import dropOffBlank from "./dropOffBadgeBlank.svg";
-import pickUpBlank from "./pickUpBadgeBlank.svg";
+import dropoffBlank from "./dropOffBadgeBlank.svg";
+import pickupBlank from "./pickUpBadgeBlank.svg";
+import dropoffError from "./dropOffBadgeError.svg";
+import pickupError from "./pickUpBadgeError.svg";
+import dropoffPresent from "./dropOffBadgePresent.svg";
+import pickupPresent from "./pickUpBadgePresent.svg";
+import dropoffMarker from "./dropOffMarker.svg";
+import pickupMarker from "./pickUpMarker.svg";
 
-export interface IIcon {
+interface IIcon {
   icon: string;
 }
 
@@ -9,11 +15,29 @@ const Icon: React.FC<IIcon> = ({ icon }) => {
   let IconComponent;
 
   switch (icon) {
-    case "dropOffBlank":
-      IconComponent = dropOffBlank;
+    case "dropoffBlank":
+      IconComponent = dropoffBlank;
       break;
-    case "pickUpBlank":
-      IconComponent = pickUpBlank;
+    case "pickupBlank":
+      IconComponent = pickupBlank;
+      break;
+    case "dropoffError":
+      IconComponent = dropoffError;
+      break;
+    case "pickupError":
+      IconComponent = pickupError;
+      break;
+    case "dropoffPresent":
+      IconComponent = dropoffPresent;
+      break;
+    case "pickupPresent":
+      IconComponent = pickupPresent;
+      break;
+    case "dropoffMarker":
+      IconComponent = dropoffMarker;
+      break;
+    case "pickupMarker":
+      IconComponent = pickupMarker;
       break;
     default:
       break;
