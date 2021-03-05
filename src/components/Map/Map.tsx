@@ -29,13 +29,13 @@ const MapContainer: React.ComponentClass<any> = compose(
       defaultCenter={{ lat: 48.86982, lng: 2.334579 }}
       options={defaultMapOptions}
     >
-      {pickup && (
+      {pickup?.latitude && (
         <Marker
           icon={pickupMarker}
           position={{ lat: pickup.latitude, lng: pickup.longitude }}
         />
       )}
-      {dropoff && (
+      {dropoff?.latitude && (
         <Marker
           icon={dropoffMarker}
           position={{ lat: dropoff.latitude, lng: dropoff.longitude }}

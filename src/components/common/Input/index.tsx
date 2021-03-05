@@ -14,10 +14,14 @@ interface IInput {
 const Input: React.FC<IInput> = ({ value, placeholder, type, onChange }) => {
   const dispatch = useDispatch();
 
+  const dispatchRequest = () => {
+    value.length > 0 && dispatch(geocodeRequest(value, type));
+  };
+
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       !value && dispatch(fetchedDataResponse(null, type));
-      value.length > 3 && dispatch(geocodeRequest(value, type));
+      dispatchRequest();
     }, 2000);
 
     return () => clearTimeout(delayDebounceFn);
@@ -29,6 +33,7 @@ const Input: React.FC<IInput> = ({ value, placeholder, type, onChange }) => {
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
+        onBlur={dispatchRequest}
       />
     </StyledInput>
   );

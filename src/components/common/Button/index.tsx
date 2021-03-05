@@ -7,7 +7,7 @@ export interface IButton {
 }
 
 const Button: React.FC<IButton> = ({ label, disabled, onClick }) => (
-  <StyledButton disabled={disabled} onClick={onClick}>
+  <StyledButton disabled={disabled} onClick={() => !disabled && onClick()}>
     {label}
   </StyledButton>
 );
